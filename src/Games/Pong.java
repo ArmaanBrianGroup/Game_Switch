@@ -37,8 +37,6 @@ public class Pong extends GameScreen{
 		
 		ballX += velX;
 		ballY += velY;		
-		
-		if (ballX >= image.getX()-ballRad*2 || ballX <= 0) endGame();
 	}
 
 	@Override
@@ -54,7 +52,8 @@ public class Pong extends GameScreen{
 
 	@Override
 	protected void checkEnd() {
-		
+		if (ballX >= image.getX()-ballRad*2) state = 1;
+		else if (ballX <= 0) state = 2;
 	}
 
 	@Override
@@ -62,8 +61,8 @@ public class Pong extends GameScreen{
 		y1 = image.getY()/2 - paddleH/2;
 		y2 = image.getY()/2 - paddleH/2;
 		
-		velX = (int) (Math.random()*11);
-		velY = (int) (Math.random()*11);
+		velX = (int) (Math.random()*21)-10;
+		velY = (int) (Math.random()*21)-10;
 	
 		ballX = image.getX()/2 - ballRad/2;
 		ballY = image.getX()/2 - ballRad/2;

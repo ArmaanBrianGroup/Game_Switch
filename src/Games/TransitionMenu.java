@@ -4,49 +4,47 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.GraphicsEnvironment;
-import java.util.ArrayList;
-
-import org.omg.CORBA.Environment;
 
 import Main.Image;
 import Main.Input_Handler;
+import Main.Main;
 
-public class StartMenu extends GameScreen {
-	
-	private final int FramesTillChange;
+public class TransitionMenu extends GameScreen {
+	private final int FramesTillChange, FramesTillEnd;
 	private int framesPassed = 0;
 	private final int fontSize = 100;
+	private String s = "";
 	private String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames(); 
 	private Font currFont;
 	private Color currColor;
 	private Color backColor;
 	
-	public StartMenu(Image image, Input_Handler handler, int FramesTillChange) {
+	public TransitionMenu (Image image, Input_Handler handler, int FramesTillChange, int FramesTillEnd) {
 		super(image, handler);
 		this.FramesTillChange = FramesTillChange;
+		this.FramesTillEnd = FramesTillEnd;
 		randomize();
 	}
 
 	@Override
 	public void draw() {
+		System.out.println(Main.scoreA());
+		s = Integer.toString(Main.scoreA()) + " " + Integer.toString(Main.scoreB());
 		framesPassed++;
 		if (framesPassed % FramesTillChange == 0) randomize();
 		
 		image.drawRect(backColor, 0, 0, image.getX(), image.getY());
 		
 	    FontMetrics metrics = image.getGraphics().getFontMetrics(currFont);
-	    int x = (image.getX() - metrics.stringWidth("GameSwitch")) / 2;
+	    
+	    int x = (image.getX() - metrics.stringWidth(s))/2;
 	    int y = ((image.getY() - metrics.getHeight()) / 2) + metrics.getAscent();
 
-		image.drawString(currColor, currFont, "GameSwitch", x, y);
+		image.drawString(currColor, currFont, s, x, y);
 	}
 
 	@Override
 	protected void processInput() {
-		if (handler.getKeys().size() > 0) {
-			System.out.println(0);
-			state = -1;
-		}
 	}
 	
 	private void randomize() {
@@ -57,15 +55,12 @@ public class StartMenu extends GameScreen {
 
 	@Override
 	protected void checkEnd() { //checked in processInput
-		// TODO Auto-generated method stub
-		
+		if (framesPassed > FramesTillEnd) state = -1;
 	}
 
 	@Override
 	protected void resetGame() {
-		// TODO Auto-generated method stub
-		
+		framesPassed = 0;
 	}
 
-	
 }
