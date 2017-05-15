@@ -4,35 +4,34 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import Games.Game;
+import Games.GameScreen;
+import Games.Pong;
 import Games.Start;
 import Main.Input_Handler;
 
 public class Main {
 	
-	private static Window w;
-	private static JFrame f;
-	public static int x;
-	public static int y;
-	private static Input_Handler handler;
-	public int subX, subY;
-	private static Image image;
+	
+	public static int x = 1000;
+	public static int y = 1000;
 	private static int scoreA, scoreB;
-	public static ArrayList<Integer> keys;
+
+	private static JFrame f = new JFrame();  
+	private static Input_Handler handler = new Input_Handler();
+	private static Image image = new Image(x, y);
+	private static Window w = new Window(image);
+
+	
+	private static GameScreen screen = new Start(image, handler);
+	private static GameScreen screens[] = {new Pong(image, handler)};
+
 
 	public static void main (String[] args) {
-		x = 1000;
-		y = 1000;
-	
-		image = new Image(x, y);
-		w = new Window(x, y, image);  
-		
-		f = new JFrame();  
-		f.add(w);  
-		w.addMouseListener(handler);
-
+		f.add(w);
+		f.addMouseListener(handler);
+		f.addKeyListener(handler);
 			        
-		f.setSize(x, y);
+		f.setSize(x+20, y+50); //for some reason the window is slightly smaller than the image even though they are set to the same value;
 		f.setVisible(true);
 		
 		Timer t = new Timer(60);
@@ -40,12 +39,13 @@ public class Main {
 	}
 	
 	public static void update() {
+		screen.run();
+		w.drawImage(image);
+		image.resetImage();
 		
-
-		Game start = new Start(image, keys);
-		start.run();
-		
-		
+		if (screen.isDone()) {
+			screen = screens[(int) (Math.random()*screens.length)];
+		}
 	}
 	
 		

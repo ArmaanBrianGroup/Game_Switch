@@ -1,6 +1,7 @@
 package Main;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -10,18 +11,19 @@ public class Image {
 	private Graphics2D g;
 	private int winx, winy;
 	
-	public Image(int winx, int winy, int[][][] pixels) {
-		this.winx = winx;
-		this.winy = winy;
-		resetImage(pixels);
-		g = image.createGraphics();
-	}
-	
 	public Image(int winx, int winy) {
 		this.winx = winx;
 		this.winy = winy;
 		image = new BufferedImage(winx, winy, BufferedImage.TYPE_3BYTE_BGR);
 		g = image.createGraphics();
+	}
+	
+	public int getX() {
+		return winx;
+	}
+	
+	public int getY() {
+		return winy;
 	}
 	
 	public void resetImage() {
@@ -71,6 +73,12 @@ public class Image {
 	
 	public void drawString(Color c, String str, int x, int y) {
 		g.setColor(c);
+		g.drawString(str, x, y);
+	}
+	
+	public void drawString(Color c, Font f, String str, int x, int y) {
+		g.setColor(c);
+		g.setFont(f);
 		g.drawString(str, x, y);
 	}
 }

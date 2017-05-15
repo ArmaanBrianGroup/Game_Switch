@@ -1,32 +1,41 @@
 package Games;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import Main.Image;
+import Main.Input_Handler;
 
-public class Start extends Game {
+public class Start extends GameScreen {
 
-	
-	
-	
-	public Start(Image image, ArrayList<Integer> keys) {
-		super(image, keys);
-		// TODO Auto-generated constructor stub
+	public Start(Image image, Input_Handler handler) {
+		super(image, handler);
 	}
 
-	public void run() {
-		resetDone();
-		while(done == false) {
-			image.drawString(Color.white, "arman is", 100, 100);
-			
+	@Override
+	public void draw() {
+		image.drawString(Color.white, "GameSwitch", image.getX()/2, image.getY()/2);
+	}
 
-			if(keys.size() > 0) {
-				System.out.println("game has ended"); endGame();
-				
-			}
-			
+	@Override
+	protected void processInput() {
+		if (handler.getKeys().size() > 0) {
+			System.out.println(0);
+			endGame();
 		}
+	}
+
+	@Override
+	protected void checkEnd() { //checked in processInput
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void resetGame() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

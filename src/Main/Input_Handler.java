@@ -16,9 +16,7 @@ import javax.swing.event.MouseInputListener;
 
 public class Input_Handler implements ActionListener, MouseListener, KeyListener, MouseInputListener {
 	
-	
-	public Input_Handler() {
-	}
+	private ArrayList<Integer> keys = new ArrayList<Integer>();
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -45,17 +43,8 @@ public class Input_Handler implements ActionListener, MouseListener, KeyListener
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_UP) Main.keys.add(1);
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) Main.keys.add(2);
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) Main.keys.add(3);
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) Main.keys.add(4);
-		if (e.getKeyCode() == KeyEvent.VK_W) Main.keys.add(5);
-		if (e.getKeyCode() == KeyEvent.VK_S) Main.keys.add(6);
-		if (e.getKeyCode() == KeyEvent.VK_A) Main.keys.add(7);
-		if (e.getKeyCode() == KeyEvent.VK_D) Main.keys.add(8);
-
-		
+	public void keyPressed(KeyEvent e) {		
+		keys.add(e.getKeyCode());
 	}
 
 	@Override
@@ -83,6 +72,14 @@ public class Input_Handler implements ActionListener, MouseListener, KeyListener
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public ArrayList<Integer> getKeys() {
+		return keys;
+	}
+	
+	public void clearKeyList() {
+		keys.removeAll(keys);
 	}
 }
 
