@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 import Games.GameScreen;
 import Games.Pong;
-import Games.Start;
+import Games.StartMenu;
 import Main.Input_Handler;
 
 public class Main {
@@ -22,7 +22,7 @@ public class Main {
 	private static Window w = new Window(image);
 
 	
-	private static GameScreen screen = new Start(image, handler);
+	private static GameScreen screen = new StartMenu(image, handler);
 	private static GameScreen screens[] = {new Pong(image, handler)};
 
 

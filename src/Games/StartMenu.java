@@ -11,7 +11,7 @@ import org.omg.CORBA.Environment;
 import Main.Image;
 import Main.Input_Handler;
 
-public class Start extends GameScreen {
+public class StartMenu extends GameScreen {
 	
 	private final long timeTillFontChange = 300;
 	private final int fontSize = 100;
@@ -21,7 +21,7 @@ public class Start extends GameScreen {
 	private Color currColor;
 	private Color backColor;
 	
-	public Start(Image image, Input_Handler handler) {
+	public StartMenu(Image image, Input_Handler handler) {
 		super(image, handler);
 		randomize();
 	}
@@ -55,7 +55,7 @@ public class Start extends GameScreen {
 	private void randomize() {
 		currFont = new Font(fonts[(int) (Math.random()*fonts.length)], Font.BOLD, fontSize);
 		currColor = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
-		backColor = new Color (256-currColor.getRed(), 256-currColor.getGreen(), 256-currColor.getBlue());
+		backColor = new Color (255-currColor.getRed(), 255-currColor.getGreen(), 255-currColor.getBlue());
 	}
 
 	@Override
