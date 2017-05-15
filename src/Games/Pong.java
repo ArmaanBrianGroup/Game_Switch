@@ -31,8 +31,8 @@ public class Pong extends GameScreen{
 		
 		if (ballY >= image.getY()-ballRad*2 || ballY <= 0) velY *= -1;
 		
-		image.drawRect(Color.WHITE, paddleW, y1, paddleW, paddleH);
-		image.drawRect(Color.WHITE, image.getX()-paddleW, y2, paddleW, paddleH);
+		image.drawRect(Color.WHITE, paddleW, y2, paddleW, paddleH);
+		image.drawRect(Color.WHITE, image.getX()-paddleW, y1, paddleW, paddleH);
 		image.drawCircle(Color.WHITE, ballX, ballY, ballRad);
 		
 		ballX += velX;
