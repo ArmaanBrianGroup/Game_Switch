@@ -26,6 +26,10 @@ public class Image {
 		return winy;
 	}
 	
+	public Graphics2D getGraphics() {
+		return g;
+	}
+	
 	public void resetImage() {
 		image = new BufferedImage(winx, winy, BufferedImage.TYPE_3BYTE_BGR);
 		g = image.createGraphics();

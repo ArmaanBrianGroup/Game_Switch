@@ -2,8 +2,11 @@ package Games;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.GraphicsEnvironment;
 import java.util.ArrayList;
+
+import org.omg.CORBA.Environment;
 
 import Main.Image;
 import Main.Input_Handler;
@@ -13,25 +16,32 @@ public class Start extends GameScreen {
 	private final long timeTillFontChange = 300;
 	private final int fontSize = 100;
 	private long last = System.currentTimeMillis();
-	private String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-	private Font currFont = new Font(fonts[(int) (Math.random()*fonts.length)], Font.BOLD, fontSize);;
-	private Color currColor = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+	private String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames(); 
+	private Font currFont;
+	private Color currColor;
+	private Color backColor;
 	
 	public Start(Image image, Input_Handler handler) {
 		super(image, handler);
+		randomize();
 	}
 
 	@Override
 	public void draw() {
 		if (System.currentTimeMillis() - timeTillFontChange >= last) {
-			currFont = new Font(fonts[(int) (Math.random()*fonts.length)], Font.BOLD, fontSize);
-			currColor = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+			randomize();
 			last = System.currentTimeMillis();
 		}
 		
 		
+		image.drawRect(backColor, 0, 0, image.getX(), image.getY());
 		
-		image.drawString(currColor, currFont, "GameSwitch", image.getX()/2-fontSize*4, image.getY()/2);
+	    FontMetrics metrics = image.getGraphics().getFontMetrics(currFont);
+	    int x = (image.getX() - metrics.stringWidth("GameSwitch")) / 2;
+	    int y = ((image.getY() - metrics.getHeight()) / 2) + metrics.getAscent();
+
+		
+		image.drawString(currColor, currFont, "GameSwitch", x, y);
 	}
 
 	@Override
@@ -40,6 +50,12 @@ public class Start extends GameScreen {
 			System.out.println(0);
 			endGame();
 		}
+	}
+	
+	private void randomize() {
+		currFont = new Font(fonts[(int) (Math.random()*fonts.length)], Font.BOLD, fontSize);
+		currColor = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+		backColor = new Color (256-currColor.getRed(), 256-currColor.getGreen(), 256-currColor.getBlue());
 	}
 
 	@Override
