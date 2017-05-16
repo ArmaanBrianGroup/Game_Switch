@@ -9,7 +9,7 @@ import Main.Input_Handler;
 
 public class Pong extends GameScreen{
 	
-	private final int paddleW = 20, paddleH = 150, speed = 5;
+	private final int paddleW = 20, paddleH = 300, speed = 15;
 	private int y1, y2;
 	
 	private int velX, velY, ballX, ballY;
@@ -31,8 +31,12 @@ public class Pong extends GameScreen{
 		
 		if (ballY >= image.getY()-ballRad*2 || ballY <= 0) velY *= -1;
 		
+		if ((velX <= 0 && ballX <= paddleW*2 && ballY+ballRad*2 >= y2 && ballY <= y2+paddleH) ||
+			(velX >= 0 && ballX+ballRad*2 >= image.getX()-paddleW*2 && ballY+ballRad*2 >= y1 && ballY <= y1+paddleH))
+			velX *= -1;
+		
 		image.drawRect(Color.WHITE, paddleW, y2, paddleW, paddleH);
-		image.drawRect(Color.WHITE, image.getX()-paddleW, y1, paddleW, paddleH);
+		image.drawRect(Color.WHITE, image.getX()-paddleW*2, y1, paddleW, paddleH);
 		image.drawCircle(Color.WHITE, ballX, ballY, ballRad);
 		
 		ballX += velX;
@@ -62,6 +66,7 @@ public class Pong extends GameScreen{
 		y2 = image.getY()/2 - paddleH/2;
 		
 		velX = (int) (Math.random()*21)-10;
+		while (velX < 5 && velX > -5) velX = (int) (Math.random()*21)-10;
 		velY = (int) (Math.random()*21)-10;
 	
 		ballX = image.getX()/2 - ballRad/2;
