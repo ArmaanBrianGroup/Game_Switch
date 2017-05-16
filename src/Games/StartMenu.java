@@ -66,18 +66,7 @@ public class StartMenu extends GameScreen {
 			if(temp2 == 4) {currColor = new Color(128, 21, 21); backColor = new Color(17, 102, 17);}
 			if(temp2 == 5) {currColor = new Color(85, 0, 0); backColor = new Color(0, 68, 0);}
 			
-			
-		
-		
-		
-		
 		}
-	
-	
-	
-	
-	
-	
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public class TransitionMenu extends GameScreen {
 	@Override
 	public void draw() {
 		System.out.println(Main.scoreA());
-		s = Integer.toString(Main.scoreA()) + " " + Integer.toString(Main.scoreB());
+		s = Integer.toString(Main.scoreA()) + " - " + Integer.toString(Main.scoreB());
 		framesPassed++;
 		if (framesPassed % FramesTillChange == 0) randomize();
 		
