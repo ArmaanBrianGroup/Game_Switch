@@ -49,10 +49,35 @@ public class StartMenu extends GameScreen {
 		}
 	}
 	
-	private void randomize() {
+	private void randomize() { //http://paletton.com/#uid=7000u0kllllaFw0g0qFqFg0w0aF
 		currFont = new Font(fonts[(int) (Math.random()*fonts.length)], Font.BOLD, fontSize);
-		currColor = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+		currColor = new Color((int) (Math.random() * 156 + 100), (int) (Math.random() * 156 + 100), (int) (Math.random() * 156 + 100));
 		backColor = new Color (255-currColor.getRed(), 255-currColor.getGreen(), 255-currColor.getBlue());
+	
+		
+		int temp = (int) (Math.random() * 1);
+		int temp2 = (int) (Math.random() * 5);
+		int temp3 = (int) (Math.random() * 2);
+		switch(temp) {
+		case 0:
+			if(temp2 == 0) {currColor = new Color(225, 170, 170); backColor = new Color(136, 204, 136);}
+			if(temp2 == 1) {currColor = new Color(212, 106, 106); backColor = new Color(85, 170, 85);}
+			if(temp2 == 3) {currColor = new Color(170, 57, 57); backColor = new Color(45, 136, 45);}
+			if(temp2 == 4) {currColor = new Color(128, 21, 21); backColor = new Color(17, 102, 17);}
+			if(temp2 == 5) {currColor = new Color(85, 0, 0); backColor = new Color(0, 68, 0);}
+			
+			
+		
+		
+		
+		
+		}
+	
+	
+	
+	
+	
+	
 	}
 
 	@Override
