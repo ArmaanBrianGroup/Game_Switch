@@ -44,7 +44,8 @@ public class Input_Handler implements ActionListener, MouseListener, KeyListener
 
 	@Override
 	public void keyPressed(KeyEvent e) {	
-		keys.add(e.getKeyCode());
+		if (e.getKeyCode() == KeyEvent.VK_END) System.exit(0);
+		else keys.add(e.getKeyCode());
 	}
 
 	@Override

@@ -3,7 +3,7 @@ package Games;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
+import java.util.Random;
 
 import Main.Image;
 import Main.Input_Handler;
@@ -13,17 +13,16 @@ public class Snake extends GameScreen {
 	private int velX1 = 0, velY1 = 0, velX2 = 0, velY2 = 0;
 	private SnakeObj p1, p2;
 	private final int speed = 5;
+	private Random r = new Random();
 	
 	public Snake(Image image, Input_Handler handler) {
 		super(image, handler);
-		p1 = new SnakeObj (image.getX()/4, image.getY()/4, 1, Color.white);
-		p2 = new SnakeObj(image.getX()/4*3,image.getY()/4*3, 1, Color.white);
+		p1 = new SnakeObj (image.getX()/4, image.getY()/4, 5, Color.white);
+		p2 = new SnakeObj(image.getX()/4*3,image.getY()/4*3, 5, Color.white);
 	}
 
 	@Override
-	protected void draw() {
-		System.out.println(velY2);
-		
+	protected void draw() {		
 		p1.adjustX(velX1);
 		p1.adjustY(velY1);
 		p2.adjustX(velX2);
@@ -37,41 +36,41 @@ public class Snake extends GameScreen {
 	protected void processInput() {
 		for (int i = 0; i < handler.getKeys().size(); i++) {
 			int key = handler.getKeys().remove(i);
-			if (key == KeyEvent.VK_UP) {
+			if (key == KeyEvent.VK_UP && velY2 != speed) {
 				velX2 = 0;
 				velY2 = -speed;
 			}
-			if (key == KeyEvent.VK_DOWN) {
+			if (key == KeyEvent.VK_DOWN && velY2 != -speed) {
 				velX2 = 0;
 				velY2 = speed;
 			}
-			if (key == KeyEvent.VK_LEFT) {
+			if (key == KeyEvent.VK_LEFT && velX2 != speed) {
 				velY2 = 0;
 				velX2 = -speed;
 			}
-			if (key == KeyEvent.VK_RIGHT) {
+			if (key == KeyEvent.VK_RIGHT && velX2 != -speed) {
 				velY2 = 0;
 				velX2 = speed;
 			}
 			
-			if (key == KeyEvent.VK_W) {
+			if (key == KeyEvent.VK_W && velY1 != speed) {
 				velX1 = 0;
 				velY1 = -speed;
 			}
-			if (key == KeyEvent.VK_S) {
+			if (key == KeyEvent.VK_S && velY1 != -speed) {
 				velX1 = 0;
 				velY1 = speed;
 			}
-			if (key == KeyEvent.VK_A) {
+			if (key == KeyEvent.VK_A && velX1 != speed) {
 				velY1 = 0;
 				velX1 = -speed;
 			}
-			if (key == KeyEvent.VK_D) {
+			if (key == KeyEvent.VK_D && velX1 != -speed) {
 				velY1 = 0;
 				velX1 = speed;
 			}
 			
-			if (key == KeyEvent.VK_ENTER) {
+			if (key == KeyEvent.VK_BACK_SLASH) {
 				p2.addNode();
 			}
 		}
@@ -80,8 +79,10 @@ public class Snake extends GameScreen {
 
 	@Override
 	protected void checkEnd() {
-		// TODO Auto-generated method stub
-		
+		if (p1.checkCollision(p1.getX(), p1.getY()) || p2.checkCollision(p1.getX(), p1.getY())) state = PTWO;
+		else if (p2.checkCollision(p2.getX(), p2.getY()) || p1.checkCollision(p2.getX(), p2.getY())) state = PONE;
+		else if (p1.getX() <= 0 || p1.getX() >= image.getX() || p1.getY() <= 0 || p1.getY() >= image.getY()) state = PTWO;
+		else if (p2.getX() <= 0 || p2.getX() >= image.getX() || p2.getY() <= 0 || p2.getY() >= image.getY()) state = PONE;
 	}
 
 	@Override
@@ -133,6 +134,16 @@ public class Snake extends GameScreen {
 			nodes.add(new SnakeNode(x,y));
 		}
 		
+		public int getX() {
+			// TODO Auto-generated method stub
+			return x;
+		}
+
+		public int getY() {
+			// TODO Auto-generated method stub
+			return y;
+		}
+
 		public void addNode() {
 			nodes.add(new SnakeNode(lastX, lastY));
 		}
@@ -145,7 +156,7 @@ public class Snake extends GameScreen {
 				nodes.get(i).setX(lastX);
 				lastX = temp;
 			}
-			//this.lastX = lastX;
+			this.lastX = lastX;
 		}
 		
 		public void adjustY (int delta) {
@@ -156,13 +167,20 @@ public class Snake extends GameScreen {
 				nodes.get(i).setY(lastY);
 				lastY = temp;
 			}
-			//this.lastY = lastY;
+			this.lastY = lastY;
 		}
 		
 		public void draw (Image image) {
 			for (int i = 0; i < nodes.size(); i++) {
 				image.drawRect(color, nodes.get(i).getX(), nodes.get(i).getY(), nodeSize, nodeSize);
 			}
+		}
+		
+		public boolean checkCollision(int x, int y) {
+			for (int i = 1; i < nodes.size(); i++) {
+				if (nodes.get(i).getX() == x && nodes.get(i).getY() == y) return true;
+			}
+			return false;
 		}
 	}
 
