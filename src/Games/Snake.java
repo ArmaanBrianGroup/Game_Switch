@@ -1,9 +1,9 @@
 package Games;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import com.sun.glass.events.KeyEvent;
 
 import Main.Image;
 import Main.Input_Handler;
@@ -53,7 +53,6 @@ public class Snake extends GameScreen {
 				velY2 = 0;
 				velX2 = speed;
 			}
-			
 			
 			if (key == KeyEvent.VK_W) {
 				velX1 = 0;
