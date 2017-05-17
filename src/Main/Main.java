@@ -20,7 +20,7 @@ public class Main {
 	private static GameScreen transitionScreen = new TransitionMenu(image, handler, 30, 60);
 	private static GameScreen screen = new StartMenu(image, handler, 30);
 
-	private static GameScreen screens[] = {new Snake(image, handler)};
+	private static GameScreen screens[] = {new Pong(image, handler)};
 
 
 	public static void main (String[] args) {

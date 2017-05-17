@@ -9,10 +9,11 @@ import Main.Input_Handler;
 
 public class Pong extends GameScreen{
 	
-	private final int paddleW = 20, paddleH = 300, speed = 15;
+	private final int paddleW = 20, paddleH = 300, speed = 5;
 	private int y1, y2;
 	
 	private int velX, velY, ballX, ballY;
+	private int p1Move = 0, p2Move = 0;
 	private final int ballRad = 10;
 
 	
@@ -23,6 +24,9 @@ public class Pong extends GameScreen{
 
 	@Override
 	public void draw() {
+		y1 += p1Move;
+		y2 += p2Move;
+		
 		if (y1 > image.getY()-paddleH) y1 = image.getY()-paddleH;
 		else if (y1 < 0) y1 = 0;
 		
@@ -47,10 +51,10 @@ public class Pong extends GameScreen{
 	protected void processInput() {
 		while (handler.getKeys().size() > 0) {
 			int key = handler.getKeys().remove(0);
-			if (key == KeyEvent.VK_UP) y1-=speed;
-			if (key == KeyEvent.VK_DOWN) y1+=speed;
-			if (key == KeyEvent.VK_W) y2-=speed;
-			if (key == KeyEvent.VK_S) y2+=speed;
+			if (key == KeyEvent.VK_UP) p1Move = -speed;
+			if (key == KeyEvent.VK_DOWN) p1Move = speed;
+			if (key == KeyEvent.VK_W) p2Move = -speed;
+			if (key == KeyEvent.VK_S) p2Move = speed;
 		}
 	}
 
@@ -71,5 +75,8 @@ public class Pong extends GameScreen{
 	
 		ballX = image.getX()/2 - ballRad/2;
 		ballY = image.getX()/2 - ballRad/2;
+		
+		p1Move = 0;
+		p2Move = 0;
 	}
 }
