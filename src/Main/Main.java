@@ -1,14 +1,8 @@
 package Main;
-import java.awt.Color;
-import java.util.ArrayList;
+
 
 import javax.swing.JFrame;
-
-import Games.GameScreen;
-import Games.Pong;
-import Games.StartMenu;
-import Games.TransitionMenu;
-import Main.Input_Handler;
+import Games.*;
 
 public class Main {
 	
@@ -25,7 +19,7 @@ public class Main {
 	private static boolean isTransitioning = false;
 	private static GameScreen transitionScreen = new TransitionMenu(image, handler, 30, 60);
 	private static GameScreen screen = new StartMenu(image, handler, 30);
-	private static GameScreen screens[] = {new Pong(image, handler)};
+	private static GameScreen screens[] = {new DualShooter(image, handler)};
 
 
 	public static void main (String[] args) {

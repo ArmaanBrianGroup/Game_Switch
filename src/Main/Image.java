@@ -85,4 +85,25 @@ public class Image {
 		g.setFont(f);
 		g.drawString(str, x, y);
 	}
+	
+	public void drawTriangle(Color c, int x1, int y1, int x2, int y2, int x3, int y3) {
+		int[] xPoints = {x1, x2, x3};
+		int[] yPoints = {y1, y2, y3};
+		g.setColor(c);
+		g.drawPolygon(xPoints, yPoints, 3);
+	}
+	
+	public void drawHorizontalTriangle(Color c, int x, int y, int width, int height) {
+		int[] xPoints = {x, x+width, x};
+		int[] yPoints = {y, y+height/2, y+height};
+		g.setColor(c);
+		g.drawPolygon(xPoints, yPoints, 3);
+	}
+	
+	public void drawVerticalTriangle (Color c, int x, int y, int width, int height) {
+		int[] xPoints = {x, x+width/2, x+width};
+		int[] yPoints = {y, y+height, y};
+		g.setColor(c);
+		g.drawPolygon(xPoints, yPoints, 3);
+	}
 }
