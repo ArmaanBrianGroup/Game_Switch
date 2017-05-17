@@ -1,5 +1,6 @@
 package Games;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import Main.Image;
@@ -26,6 +27,9 @@ public abstract class GameScreen {
 		processInput();
 		draw();
 		checkEnd();
+		
+		if(handler.getKeys().size() > 0 && handler.getKeys().get(0) == KeyEvent.VK_ESCAPE) System.exit(0);
+		
 	}
 
 	
