@@ -42,12 +42,15 @@ public class LightBike extends GameScreen {
 
 				image.drawRect(Color.pink, lineX1.get(i), lineY1.get(i),
 										   lineX1.get(i+1) - lineX1.get(i), lineY1.get(i+1) - lineY1.get(i));
-			System.out.println("sdfsdf");
 		}
 		for(int i = 0; i < lineX2.size() - 1; i++) {
 			
 		}
 		
+		if(lineX1.size() > 1) {
+			image.drawRect(Color.pink, lineX1.get(0), lineY1.get(0),
+					   lineX1.get(0+1) - lineX1.get(0), lineY1.get(0+1) - lineY1.get(0));
+		}
 		if(v1Last != v1) {
 			lineX1.add(x1);
 			lineY1.add(y1);System.out.println(x1 + " " + y1);
