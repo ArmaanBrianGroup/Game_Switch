@@ -9,7 +9,8 @@ public abstract class GameScreen {
 	protected Image image;
 	protected Input_Handler handler;
 	protected boolean done = false;
-	protected int state = 0;
+	public static final int MENUEND = -1, PLAYING = 0, PONE = 1, PTWO = 21; 
+	protected int state = PLAYING;
 	
 	public GameScreen(Image image, Input_Handler handler) {
 		this.image = image;
@@ -30,11 +31,11 @@ public abstract class GameScreen {
 
 	
 	public int isDone() {
-		if (state == 0) {
+		if (state == PLAYING) {
 			return state;
 		} else {
 			int stateWas = state;
-			state = 0;
+			state = PLAYING;
 			resetGame();
 			return stateWas;
 		}

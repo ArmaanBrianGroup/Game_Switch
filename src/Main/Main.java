@@ -19,7 +19,7 @@ public class Main {
 	private static boolean isTransitioning = false;
 	private static GameScreen transitionScreen = new TransitionMenu(image, handler, 30, 60);
 	private static GameScreen screen = new StartMenu(image, handler, 30);
-	private static GameScreen screens[] = {new DualShooter(image, handler)};
+	private static GameScreen screens[] = {new Pong(image, handler) , new DualShooter(image, handler)};
 
 
 	public static void main (String[] args) {
@@ -40,10 +40,10 @@ public class Main {
 		image.resetImage();
 		
 		int state = screen.isDone();
-		if (state != 0) {
+		if (state != GameScreen.PLAYING) {
 			System.out.println(state);
-			if (state == 1) scoreA++;
-			else if (state == 2) scoreB++;
+			if (state == GameScreen.PONE) scoreA++;
+			else if (state == GameScreen.PTWO) scoreB++;
 			
 			isTransitioning = !isTransitioning;
 			

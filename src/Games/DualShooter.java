@@ -59,13 +59,24 @@ public class DualShooter extends GameScreen {
 
 	@Override
 	protected void checkEnd() {
-		// TODO Auto-generated method stub
+		for (int i = 0; i < shots.size(); i++) {
+			if (shots.get(i)[2] < 0 &&shots.get(i)[1] <= triW && shots.get(i)[0] <= y1 + triH && shots.get(i)[0] + shotRad*2 >= y1) {
+				state = PTWO;
+			}
+			if (shots.get(i)[2] > 0 && shots.get(i)[1] + shotRad*2 >= image.getX()-triW && shots.get(i)[0] <= y1 + triH && shots.get(i)[0] + shotRad*2 >= y1) {
+				state = PONE;
+			}
+		}
 		
 	}
 
 	@Override
 	protected void resetGame() {
-		// TODO Auto-generated method stub
+		shots.removeAll(shots);
+		y1 = 0;
+		y2 = 0;
+		shot1 = false;
+		shot2 = false;
 		
 	}
 

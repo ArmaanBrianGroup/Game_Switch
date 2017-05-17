@@ -56,8 +56,8 @@ public class Pong extends GameScreen{
 
 	@Override
 	protected void checkEnd() {
-		if (ballX >= image.getX()-ballRad*2) state = 1;
-		else if (ballX <= 0) state = 2;
+		if (ballX >= image.getX()-ballRad*2) state = PONE;
+		else if (ballX <= 0) state = PTWO;
 	}
 
 	@Override
