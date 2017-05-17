@@ -43,7 +43,7 @@ public class Input_Handler implements ActionListener, MouseListener, KeyListener
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {		
+	public void keyPressed(KeyEvent e) {	
 		keys.add(e.getKeyCode());
 	}
 

@@ -98,6 +98,4 @@ public class LightBike extends GameScreen {
 
 	}
 	
-	
-	
 }
