@@ -3,7 +3,6 @@ package Games;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Random;
 
 import Main.Image;
 import Main.Input_Handler;
@@ -12,17 +11,19 @@ public class Snake extends GameScreen {
 
 	private int velX1 = 0, velY1 = 0, velX2 = 0, velY2 = 0;
 	private SnakeObj p1, p2;
-	private final int speed = 5;
-	private Random r = new Random();
-	
+	private final int speed = 5, framesTillLenIncrease = 60;
+	private int framesPassed = 0;
+		
 	public Snake(Image image, Input_Handler handler) {
 		super(image, handler);
-		p1 = new SnakeObj (image.getX()/4, image.getY()/4, 5, Color.white);
-		p2 = new SnakeObj(image.getX()/4*3,image.getY()/4*3, 5, Color.white);
+		p1 = new SnakeObj (image.getX()/4, image.getY()/4, speed, Color.green);
+		p2 = new SnakeObj(image.getX()/4*3,image.getY()/4*3, speed, Color.green);
 	}
 
 	@Override
 	protected void draw() {		
+		framesPassed++;
+		
 		p1.adjustX(velX1);
 		p1.adjustY(velY1);
 		p2.adjustX(velX2);
@@ -30,6 +31,11 @@ public class Snake extends GameScreen {
 		
 		p1.draw(image);
 		p2.draw(image);
+		
+		if (((velX1 != 0 || velY1 != 0) && (velX2 != 0 || velY2 != 0)) && framesPassed % framesTillLenIncrease == 0){
+			p1.addNode();
+			p2.addNode();
+		}
 	}
 
 	@Override
@@ -91,8 +97,11 @@ public class Snake extends GameScreen {
 		velY1 = 0;
 		velX2 = 0;
 		velY2 = 0;
+		
 		p1 = new SnakeObj (image.getX()/4, image.getY()/4, 4, Color.white);
 		p2 = new SnakeObj(image.getX()/4*3,image.getY()/4*3, 4, Color.white);
+		
+		framesPassed = 0;
 	}
 	
 	public class SnakeNode {
