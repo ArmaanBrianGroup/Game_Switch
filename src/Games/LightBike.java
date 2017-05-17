@@ -8,10 +8,6 @@ import Main.Image;
 import Main.Input_Handler;
 
 public class LightBike extends GameScreen {
-
-	
-	
-
 	private int x1, y1, x2, y2, speed1, speed2, size1, size2;
 	private int v1, v2, v1Last, v2Last; //0 up, 1 down, 2 left, 3 right
 	private ArrayList<Integer> lineX1, lineX2, lineY1, lineY2;

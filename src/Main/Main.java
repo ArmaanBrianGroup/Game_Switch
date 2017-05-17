@@ -19,7 +19,7 @@ public class Main {
 	private static boolean isTransitioning = false;
 	private static GameScreen transitionScreen = new TransitionMenu(image, handler, 30, 60);
 	private static GameScreen screen = new StartMenu(image, handler, 30);
-	private static GameScreen screens[] = {new DualShooter(image, handler)};
+	private static GameScreen screens[] = {new LightBike(image, handler)};
 
 
 	public static void main (String[] args) {
@@ -38,7 +38,7 @@ public class Main {
 		screen.run();
 		w.drawImage(image);
 		image.resetImage();
-		
+
 		int state = screen.isDone();
 		if (state != 0) {
 			System.out.println(state);
@@ -49,6 +49,7 @@ public class Main {
 			
 			if (isTransitioning) screen = transitionScreen;
 			else screen = screens[(int) (Math.random()*screens.length)];
+			
 		}
 	}
 	
