@@ -76,12 +76,7 @@ public class Image {
         	h = Math.abs(h);
         	y -= h;
         }
-        
-        
-        
-        
-        
-        
+       
         g.fillRect(x, y, w, h);
 	}
 	
@@ -110,16 +105,11 @@ public class Image {
 	}
 	
 	public void drawHorizontalTriangle(Color c, int x, int y, int width, int height) {
-		int[] xPoints = {x, x+width, x};
-		int[] yPoints = {y, y+height/2, y+height};
-		g.setColor(c);
-		g.drawPolygon(xPoints, yPoints, 3);
+		drawTriangle(c, x, y, x+width, y+height/2, x, y+height);
+
 	}
 	
 	public void drawVerticalTriangle (Color c, int x, int y, int width, int height) {
-		int[] xPoints = {x, x+width/2, x+width};
-		int[] yPoints = {y, y+height, y};
-		g.setColor(c);
-		g.drawPolygon(xPoints, yPoints, 3);
+		drawTriangle(c, x, y, x+width/2, y+height, x+width, y);
 	}
 }
