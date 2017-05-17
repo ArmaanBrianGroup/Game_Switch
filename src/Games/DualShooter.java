@@ -8,8 +8,9 @@ import Main.Image;
 import Main.Input_Handler;
 
 public class DualShooter extends GameScreen {
-	private final int triH = 20, triW = 40, speed = 5, shotRad = 10;
+	private final int triH = 80, triW = 60, speed = 5, shotRad = 10;
 	private int y1, y2;
+	private int v1 = 0, v2= 0;
 	private boolean shot1 = false, shot2 = false;
 	private ArrayList<int[]> shots = new ArrayList<int[]>();
 
@@ -20,6 +21,8 @@ public class DualShooter extends GameScreen {
 
 	@Override
 	protected void draw() {
+		y1+=v1;
+		y2+=v2;
 		if (y1 < 0) y1 = 0;
 		else if (y1 + triH > image.getY()) y1 = image.getY() - triH;
 		
@@ -48,10 +51,10 @@ public class DualShooter extends GameScreen {
 	protected void processInput() {
 		while (handler.getKeys().size() > 0) {
 			int key = handler.getKeys().remove(0);
-			if (key == KeyEvent.VK_UP) y2-=speed;
-			if (key == KeyEvent.VK_DOWN) y2+=speed;
-			if (key == KeyEvent.VK_W) y1-=speed;
-			if (key == KeyEvent.VK_S) y1+=speed;
+			if (key == KeyEvent.VK_UP) v2 = -speed;
+			if (key == KeyEvent.VK_DOWN) v2 = speed;
+			if (key == KeyEvent.VK_W) v1 = -speed;
+			if (key == KeyEvent.VK_S) v1 = speed;
 			if (key == KeyEvent.VK_1) shot1 = true;
 			if (key == KeyEvent.VK_BACK_SLASH) shot2 = true;
 		}
@@ -78,6 +81,8 @@ public class DualShooter extends GameScreen {
 		shot1 = false;
 		shot2 = false;
 		
+		v1 = 0; 
+		v2= 0;
 	}
 
 }
