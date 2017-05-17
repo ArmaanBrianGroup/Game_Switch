@@ -19,6 +19,7 @@ public class Main {
 	private static boolean isTransitioning = false;
 	private static GameScreen transitionScreen = new TransitionMenu(image, handler, 30, 60);
 	private static GameScreen screen = new StartMenu(image, handler, 30);
+
 	private static GameScreen screens[] = {new Snake(image, handler)};
 
 
@@ -38,7 +39,7 @@ public class Main {
 		screen.run();
 		w.drawImage(image);
 		image.resetImage();
-		
+
 		int state = screen.isDone();
 		if (state != GameScreen.PLAYING) {
 			if (state == GameScreen.PONE) scoreA++;
@@ -48,6 +49,7 @@ public class Main {
 			
 			if (isTransitioning) screen = transitionScreen;
 			else screen = screens[(int) (Math.random()*screens.length)];
+			
 		}
 	}
 	

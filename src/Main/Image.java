@@ -67,8 +67,24 @@ public class Image {
 	
 	public void drawRect(Color c, int x, int y, int w, int h) {
         g.setColor(c);
+        
+        if(w < 0) {
+        	w = Math.abs(w);
+        	x -= w;
+        }
+        if(h < 0) {
+        	h = Math.abs(h);
+        	y -= h;
+        }
+        
+        
+        
+        
+        
+        
         g.fillRect(x, y, w, h);
 	}
+	
 	
 	public void drawLine(Color c, int x1, int x2, int y1, int y2) {
 		g.setColor(c);
