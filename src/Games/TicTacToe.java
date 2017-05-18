@@ -35,6 +35,8 @@ public class TicTacToe extends GameScreen {
 				}
 			}
 		}
+		
+		
 	}
 
 	@Override
@@ -51,45 +53,54 @@ public class TicTacToe extends GameScreen {
 
 	@Override
 	protected void checkEnd() {
-		int p1 = 0, p2 = 0;
-		for (int i = 0; i < board.length; i++) {
-			if (board[i][0] == P1) p1++;
-			if (board[i][0] == P2) p2++;
-		}
+		int p1, p2;
 		
-		if (p1 == 3) state = PONE;
-		else if (p2 == 3) state = PTWO;
-		
-		p1 = 0;
-		p2 = 0;
 		for (int i = 0; i < board[0].length; i++) {
-			if (board[0][i] == P1) p1++;
-			if (board[0][i] == P2) p2++;
+			p1 = 0;
+			p2 = 0; 
+			
+			for (int x = 0; x < board.length; x++) {
+				if (board[x][i] == P1) p1++;
+				else if (board[x][i] == P2) p2++;
+			}
+			
+			if (p1 == 3) state = PONE;
+			else if (p2 == 3) state = PTWO;
+		}
+	
+		for (int x = 0; x < board.length; x++) {
+			p1 = 0;
+			p2 = 0;
+			for (int i = 0; i < board[0].length; i++) {
+				if (board[x][i] == P1) p1++;
+				else if (board[x][i] == P2) p2++;
+			}
+			
+			if (p1 == 3) state = PONE;
+			else if (p2 == 3) state = PTWO;
 		}
 		
-		if (p1 == 3) state = PONE;
-		else if (p2 == 3) state = PTWO;
 
 		p1 = 0;
 		p2 = 0;
 		for (int i = 0; i < board.length; i++) {
 			if (board[i][i] == P1) p1++;
-			if (board[i][i] == P2) p2++;
+			else if (board[i][i] == P2) p2++;
 		}
 		
 		if (p1 == 3) state = PONE;
 		else if (p2 == 3) state = PTWO;
+	
 		
 		p1 = 0;
 		p2 = 0;
 		for (int i = 0, x = board.length-1; i < board.length; i++, x--) {
 			if (board[i][x] == P1) p1++;
-			if (board[i][x] == P2) p2++;
+			else if (board[i][x] == P2) p2++;
 		}
 		
 		if (p1 == 3) state = PONE;
-		else if (p2 == 3) state = PTWO;
-		
+		else if (p2 == 3) state = PTWO;	
 	}
 
 	@Override
