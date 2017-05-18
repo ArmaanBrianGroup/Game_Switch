@@ -75,10 +75,6 @@ public class Snake extends GameScreen {
 				velY1 = 0;
 				velX1 = speed;
 			}
-			
-			if (key == KeyEvent.VK_BACK_SLASH) {
-				p2.addNode();
-			}
 		}
 		
 	}

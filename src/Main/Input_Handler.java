@@ -17,6 +17,8 @@ import javax.swing.event.MouseInputListener;
 public class Input_Handler implements ActionListener, MouseListener, KeyListener, MouseInputListener {
 	
 	private ArrayList<Integer> keys = new ArrayList<Integer>();
+	private int mouseX = 0, mouseY = 0;
+	private boolean mouseClicked = false;
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -35,7 +37,10 @@ public class Input_Handler implements ActionListener, MouseListener, KeyListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.exit(0);
+		//System.exit(0);
+		mouseClicked = true;
+		mouseX = e.getX();
+		mouseY = e.getY();
 	}
 
 	@Override
@@ -45,8 +50,7 @@ public class Input_Handler implements ActionListener, MouseListener, KeyListener
 
 	@Override
 	public void keyPressed(KeyEvent e) {	
-		if (e.getKeyCode() == KeyEvent.VK_END) System.exit(0);
-		else keys.add(e.getKeyCode());
+		keys.add(e.getKeyCode());
 	}
 
 	@Override
@@ -72,8 +76,24 @@ public class Input_Handler implements ActionListener, MouseListener, KeyListener
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
+	}
+	
+	public int getMouseX() {
+		return mouseX;
+	}
+	
+	public int getMouseY() {
+		return mouseY;
+	}
+	
+	public boolean getMouseClick() {
+		if (mouseClicked) {
+			mouseClicked = false;
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public ArrayList<Integer> getKeys() {

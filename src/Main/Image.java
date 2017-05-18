@@ -50,20 +50,16 @@ public class Image {
 		return image;
 	}
 	
-	public void drawCircle(int red, int green, int blue, int x, int y, int r) {
-        g.setColor(new Color(red, green, blue));
-        g.fillOval(x, y, r*2, r*2);
-	}
-	
 	public void drawCircle(Color c, int x, int y, int r) {
         g.setColor(c);
         g.fillOval(x, y, r*2, r*2);
 	}
 	
-	public void drawRect(int red, int green, int blue, int x, int y, int w, int h) {
-        g.setColor(new Color(red, green, blue));
-        g.fillRect(x, y, w, h);;
+	public void drawUnfilledCircle(Color c, int x, int y, int r) {
+        g.setColor(c);
+        g.drawOval(x, y, r*2, r*2);
 	}
+
 	
 	public void drawRect(Color c, int x, int y, int w, int h) {
         g.setColor(c);
@@ -111,5 +107,10 @@ public class Image {
 	
 	public void drawVerticalTriangle (Color c, int x, int y, int width, int height) {
 		drawTriangle(c, x, y, x+width/2, y+height, x+width, y);
+	}
+	
+	public void drawX(Color c, int x, int y, int w, int h) {
+		drawLine(c, x, x+w, y, y+h);
+		drawLine(c, x, x+w, y+h, y);
 	}
 }
