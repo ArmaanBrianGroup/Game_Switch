@@ -14,7 +14,6 @@ import Main.Input_Handler;
 public class StartMenu extends GameScreen {
 	
 	private final int FramesTillChange;
-	private int framesPassed = 0;
 	private final int fontSize = 100;
 	private String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames(); 
 	private Font currFont;
@@ -29,7 +28,6 @@ public class StartMenu extends GameScreen {
 
 	@Override
 	public void draw() {
-		framesPassed++;
 		if (framesPassed % FramesTillChange == 0) randomize();
 		
 		image.drawRect(backColor, 0, 0, image.getX(), image.getY());
@@ -54,7 +52,7 @@ public class StartMenu extends GameScreen {
 		currColor = new Color((int) (Math.random() * 156 + 100), (int) (Math.random() * 156 + 100), (int) (Math.random() * 156 + 100));
 		backColor = new Color (255-currColor.getRed(), 255-currColor.getGreen(), 255-currColor.getBlue());
 	
-		
+		/*
 		int temp = (int) (Math.random() * 1);
 		int temp2 = (int) (Math.random() * 5);
 		int temp3 = (int) (Math.random() * 2);
@@ -73,7 +71,7 @@ public class StartMenu extends GameScreen {
 			Color tempColor = currColor;
 			currColor = backColor;
 			backColor = tempColor;
-		}
+		}*/
 		
 	}
 

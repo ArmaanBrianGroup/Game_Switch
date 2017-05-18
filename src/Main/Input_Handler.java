@@ -35,6 +35,7 @@ public class Input_Handler implements ActionListener, MouseListener, KeyListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		System.exit(0);
 	}
 
 	@Override

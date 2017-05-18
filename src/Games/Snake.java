@@ -11,23 +11,23 @@ public class Snake extends GameScreen {
 
 	private int velX1 = 0, velY1 = 0, velX2 = 0, velY2 = 0;
 	private SnakeObj p1, p2;
-	private final int speed = 5, framesTillLenIncrease = 60;
-	private int framesPassed = 0;
+	private final int speed = 20, framesTillLenIncrease = 60, framesTillMove = 10;
+	private final Color c = Color.green;
 		
 	public Snake(Image image, Input_Handler handler) {
 		super(image, handler);
-		p1 = new SnakeObj (image.getX()/4, image.getY()/4, speed, Color.green);
-		p2 = new SnakeObj(image.getX()/4*3,image.getY()/4*3, speed, Color.green);
+		p1 = new SnakeObj (image.getX()/4, image.getY()/4, speed, c);
+		p2 = new SnakeObj(image.getX()/4*3,image.getY()/4*3, speed, c);
 	}
 
 	@Override
-	protected void draw() {		
-		framesPassed++;
-		
-		p1.adjustX(velX1);
-		p1.adjustY(velY1);
-		p2.adjustX(velX2);
-		p2.adjustY(velY2);
+	protected void draw() {				
+		if (framesPassed % framesTillMove == 0) {
+			p1.adjustX(velX1);
+			p1.adjustY(velY1);
+			p2.adjustX(velX2);
+			p2.adjustY(velY2);
+		}
 		
 		p1.draw(image);
 		p2.draw(image);
@@ -98,8 +98,8 @@ public class Snake extends GameScreen {
 		velX2 = 0;
 		velY2 = 0;
 		
-		p1 = new SnakeObj (image.getX()/4, image.getY()/4, 4, Color.white);
-		p2 = new SnakeObj(image.getX()/4*3,image.getY()/4*3, 4, Color.white);
+		p1 = new SnakeObj (image.getX()/4, image.getY()/4, speed, c);
+		p2 = new SnakeObj(image.getX()/4*3,image.getY()/4*3, speed, c);
 		
 		framesPassed = 0;
 	}

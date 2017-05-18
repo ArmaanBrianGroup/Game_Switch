@@ -11,7 +11,6 @@ import Main.Main;
 
 public class TransitionMenu extends GameScreen {
 	private final int FramesTillChange, FramesTillEnd;
-	private int framesPassed = 0;
 	private final int fontSize = 100;
 	private String s = "";
 	private String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames(); 
@@ -29,7 +28,6 @@ public class TransitionMenu extends GameScreen {
 	@Override
 	public void draw() {
 		s = Integer.toString(Main.scoreA()) + " - " + Integer.toString(Main.scoreB());
-		framesPassed++;
 		if (framesPassed % FramesTillChange == 0) randomize();
 		
 		image.drawRect(backColor, 0, 0, image.getX(), image.getY());

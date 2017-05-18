@@ -2,6 +2,7 @@ package Main;
 
 public class Timer {
 	private int FPS;
+	private long lastRefresh;
 	
 	public Timer(int FPS) {
 		this.FPS = FPS;
@@ -9,12 +10,10 @@ public class Timer {
 	
 	public void run() {
 		while (true) {
-			try {
-				Thread.sleep(1000/FPS);
+			if (lastRefresh + 1000/FPS <= System.currentTimeMillis()) {
+				lastRefresh = System.currentTimeMillis();
 				Main.update();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			};
+			}
 		}		
 	}
 

@@ -12,6 +12,7 @@ public abstract class GameScreen {
 	protected boolean done = false;
 	public static final int MENUEND = -1, PLAYING = 0, PONE = 1, PTWO = 21; 
 	protected int state = PLAYING;
+	protected int framesPassed = 0;
 	
 	public GameScreen(Image image, Input_Handler handler) {
 		this.image = image;
@@ -25,12 +26,11 @@ public abstract class GameScreen {
 
 	
 	public void run() {
+		framesPassed++;
+		
 		processInput();
 		draw();
-		checkEnd();
-		
-		if(handler.getKeys().size() > 0 && handler.getKeys().get(0) == KeyEvent.VK_ESCAPE) System.exit(0);
-		
+		checkEnd();		
 	}
 
 	
@@ -40,6 +40,7 @@ public abstract class GameScreen {
 		} else {
 			int stateWas = state;
 			state = PLAYING;
+			framesPassed = 0;
 			resetGame();
 			return stateWas;
 		}
