@@ -17,7 +17,7 @@ public class Main {
 	private static Window w = new Window(image);
 
 	private static boolean isTransitioning = false;
-	private static GameScreen transitionScreen = new TransitionMenu(image, handler, 30, 60);
+	private static GameScreen transitionScreen = new TransitionMenu(image, handler, 5, 15);
 	private static GameScreen screen = new StartMenu(image, handler, 30);
 
 	private static GameScreen screens[] = {new TicTacToe(image, handler)};
@@ -31,7 +31,7 @@ public class Main {
 		f.setSize(x+20, y+50); //for some reason the window is slightly smaller than the image even though they are set to the same value;
 		f.setVisible(true);
 		
-		Timer t = new Timer(60);
+		Timer t = new Timer(15);
 		t.run();
 	}
 	

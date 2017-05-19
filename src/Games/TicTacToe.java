@@ -36,6 +36,7 @@ public class TicTacToe extends GameScreen {
 			}
 		}
 		
+		image.drawString(Color.white, (p1Turn ? "P1" : "P2"), 15, 15);
 		
 	}
 
@@ -53,6 +54,15 @@ public class TicTacToe extends GameScreen {
 
 	@Override
 	protected void checkEnd() {
+		int cnt = 0;
+		for (int i = 0; i < board.length; i++) {
+			for (int x = 0; x < board[i].length; x++) {
+				if (board[i][x] != BLANK) cnt++;
+			}
+		}
+		
+		if (cnt == board.length*board[0].length) state = MENUEND;
+		
 		int p1, p2;
 		
 		for (int i = 0; i < board[0].length; i++) {
