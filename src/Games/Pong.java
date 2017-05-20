@@ -16,12 +16,18 @@ public class Pong extends GameScreen{
 	private int p1Move = 0, p2Move = 0;
 	private final int ballRad = 10;
 
-	
+	/**
+	 * @param image for drawing
+	 * @param handler for inputs
+	 */
 	public Pong(Image image, Input_Handler handler) {
 		super(image, handler);
 		resetGame();
 	}
 
+	/**
+	 * drawing to the image
+	 */
 	@Override
 	public void draw() {
 		y1 += p1Move;
@@ -47,6 +53,9 @@ public class Pong extends GameScreen{
 		ballY += velY;		
 	}
 
+	/**
+	 * processing inputs
+	 */
 	@Override
 	protected void processInput() {
 		while (handler.getKeys().size() > 0) {
@@ -58,12 +67,18 @@ public class Pong extends GameScreen{
 		}
 	}
 
+	/**
+	 * checking if game should end
+	 */
 	@Override
 	protected void checkEnd() {
 		if (ballX >= image.getX()-ballRad*2) state = PONE;
 		else if (ballX <= 0) state = PTWO;
 	}
 
+	/**
+	 * reseting instance variables for next game
+	 */
 	@Override
 	protected void resetGame() {
 		y1 = image.getY()/2 - paddleH/2;

@@ -10,11 +10,19 @@ public class TicTacToe extends GameScreen {
 	public int[][] board = new int[3][3]; 
 	public boolean p1Turn;
 
+	/**
+	 * 
+	 * @param image for drawing
+	 * @param handler for inputs
+	 */
 	public TicTacToe(Image image, Input_Handler handler) {
 		super(image, handler);
 		p1Turn = Math.random() <= .5;
 	}
 
+	/**
+	 * drawing to the image
+	 */
 	@Override
 	protected void draw() {
 		image.drawLine(Color.white, image.getX()/3, image.getX()/3, 0, image.getY());
@@ -40,6 +48,9 @@ public class TicTacToe extends GameScreen {
 		
 	}
 
+	/**
+	 * processing the inputs from handler
+	 */
 	@Override
 	protected void processInput() {
 		if (handler.getMouseClick()) {
@@ -52,6 +63,9 @@ public class TicTacToe extends GameScreen {
 		
 	}
 
+	/**
+	 * checking if game needs to end
+	 */
 	@Override
 	protected void checkEnd() {
 		int cnt = 0;
@@ -113,6 +127,9 @@ public class TicTacToe extends GameScreen {
 		else if (p2 == 3) state = PTWO;	
 	}
 
+	/**
+	 * reseting game for next play
+	 */
 	@Override
 	protected void resetGame() {
 		board = new int[3][3];

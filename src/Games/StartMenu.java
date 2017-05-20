@@ -20,12 +20,19 @@ public class StartMenu extends GameScreen {
 	private Color currColor;
 	private Color backColor;
 	
+	/**
+	 * @param image for drawing
+	 * @param handler for inputs
+	 */
 	public StartMenu(Image image, Input_Handler handler, int FramesTillChange) {
 		super(image, handler);
 		this.FramesTillChange = FramesTillChange;
 		randomize();
 	}
 
+	/**
+	 * drawing to image
+	 */
 	@Override
 	public void draw() {
 		if (framesPassed % FramesTillChange == 0) randomize();
@@ -39,6 +46,9 @@ public class StartMenu extends GameScreen {
 		image.drawString(currColor, currFont, "GameSwitch", x, y);
 	}
 
+	/**
+	 * processing inputs
+	 */
 	@Override
 	protected void processInput() {
 		if (handler.getKeys().size() > 0) {
@@ -47,6 +57,9 @@ public class StartMenu extends GameScreen {
 		}
 	}
 	
+	/**
+	 * randomizes backround color, font color and font style
+	 */
 	private void randomize() { //http://paletton.com/#uid=7000u0kllllaFw0g0qFqFg0w0aF
 		currFont = new Font(fonts[(int) (Math.random()*fonts.length)], Font.BOLD, fontSize);
 		currColor = new Color((int) (Math.random() * 156 + 100), (int) (Math.random() * 156 + 100), (int) (Math.random() * 156 + 100));
@@ -75,12 +88,18 @@ public class StartMenu extends GameScreen {
 		
 	}
 
+	/**
+	 * checking if game should end
+	 */
 	@Override
 	protected void checkEnd() { //checked in processInput
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * reseting variables for next game
+	 */
 	@Override
 	protected void resetGame() {
 		// TODO Auto-generated method stub

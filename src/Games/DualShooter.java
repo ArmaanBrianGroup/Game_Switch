@@ -8,17 +8,26 @@ import Main.Image;
 import Main.Input_Handler;
 
 public class DualShooter extends GameScreen {
+	
 	private final int triH = 80, triW = 60, speed = 5, shotRad = 10;
 	private int y1, y2;
 	private int v1 = 0, v2= 0;
 	private boolean shot1 = false, shot2 = false;
 	private ArrayList<int[]> shots = new ArrayList<int[]>();
 
+	/**
+	 * 
+	 * @param image to draw to
+	 * @param handler to get inputs from
+	 */
 	public DualShooter(Image image, Input_Handler handler) {
 		super(image, handler);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * draws to image 
+	 */
 	@Override
 	protected void draw() {
 		y1+=v1;
@@ -47,6 +56,9 @@ public class DualShooter extends GameScreen {
 		}
 	}
 
+	/**
+	 * processes keyinput for game
+	 */
 	@Override
 	protected void processInput() {
 		while (handler.getKeys().size() > 0) {
@@ -60,6 +72,9 @@ public class DualShooter extends GameScreen {
 		}
 	}
 
+	/**
+	 * checks if game should end
+	 */
 	@Override
 	protected void checkEnd() {
 		for (int i = 0; i < shots.size(); i++) {
@@ -73,6 +88,9 @@ public class DualShooter extends GameScreen {
 		
 	}
 
+	/**
+	 * resets all instance variable for the next game
+	 */
 	@Override
 	protected void resetGame() {
 		shots.removeAll(shots);

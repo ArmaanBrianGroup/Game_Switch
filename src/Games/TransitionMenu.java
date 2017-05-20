@@ -18,6 +18,13 @@ public class TransitionMenu extends GameScreen {
 	private Color currColor;
 	private Color backColor;
 	
+	/**
+	 * 
+	 * @param image to draw to
+	 * @param handler to get input from
+	 * @param FramesTillChange frames until the font should randomize
+	 * @param FramesTillEnd frames until the transition screen shoudl terminate
+	 */
 	public TransitionMenu (Image image, Input_Handler handler, int FramesTillChange, int FramesTillEnd) {
 		super(image, handler);
 		this.FramesTillChange = FramesTillChange;
@@ -25,6 +32,9 @@ public class TransitionMenu extends GameScreen {
 		randomize();
 	}
 
+	/**
+	 * drawing to image
+	 */
 	@Override
 	public void draw() {
 		s = Integer.toString(Main.scoreA()) + " - " + Integer.toString(Main.scoreB());
@@ -40,21 +50,33 @@ public class TransitionMenu extends GameScreen {
 		image.drawString(currColor, currFont, s, x, y);
 	}
 
+	/**
+	 * processing input 
+	 */
 	@Override
 	protected void processInput() {
 	}
 	
+	/**
+	 * randomizing colors and fonts
+	 */
 	private void randomize() {
 		currFont = new Font(fonts[(int) (Math.random()*fonts.length)], Font.BOLD, fontSize);
 		currColor = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
 		backColor = new Color (255-currColor.getRed(), 255-currColor.getGreen(), 255-currColor.getBlue());
 	}
 
+	/**
+	 * checking if screen should end
+	 */
 	@Override
 	protected void checkEnd() { //checked in processInput
 		if (framesPassed > FramesTillEnd) state = -1;
 	}
 
+	/**
+	 * resets variables
+	 */
 	@Override
 	protected void resetGame() {
 		framesPassed = 0;

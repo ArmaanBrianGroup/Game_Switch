@@ -14,17 +14,35 @@ public abstract class GameScreen {
 	protected int state = PLAYING;
 	protected int framesPassed = 0;
 	
+	/**
+	 * @param image for drawing
+	 * @param handler for inputs
+	 */
 	public GameScreen(Image image, Input_Handler handler) {
 		this.image = image;
 		this.handler = handler; 
 	}
 	
+	/**
+	 * drawing to image
+	 */
 	protected abstract void draw();
+	/**
+	 * processing inputs
+	 */
 	protected abstract void processInput();
+	/**
+	 * checking if game should end
+	 */
 	protected abstract void checkEnd();
+	/**
+	 * reseting instance variables
+	 */
 	protected abstract void resetGame();
 
-	
+	/**
+	 * calls methods for processing input, drawing, and checing if game should end
+	 */
 	public void run() {
 		framesPassed++;
 		
@@ -33,7 +51,10 @@ public abstract class GameScreen {
 		checkEnd();		
 	}
 
-	
+	/**
+	 * 
+	 * @return the state of the game
+	 */
 	public int isDone() {
 		if (state == PLAYING) {
 			return state;
