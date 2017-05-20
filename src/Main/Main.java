@@ -23,6 +23,10 @@ public class Main {
 	private static GameScreen screens[] = {new TicTacToe(image, handler)};
 
 
+	/**
+	 * 
+	 * @param args default
+	 */
 	public static void main (String[] args) {
 		f.add(w);
 		f.addMouseListener(handler);
@@ -35,6 +39,9 @@ public class Main {
 		t.run();
 	}
 	
+	/**
+	 * update the screen
+	 */
 	public static void update() {
 		screen.run();
 		w.drawImage(image);
@@ -53,10 +60,18 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return player 1 score
+	 */
 	public static int scoreA() {
 		return scoreA;
 	}
 	
+	/**
+	 * 
+	 * @return player 2 score
+	 */
 	public static int scoreB() {
 		return scoreB;
 	}
