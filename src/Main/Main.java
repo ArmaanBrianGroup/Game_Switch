@@ -1,6 +1,8 @@
 package Main;
 
 
+import java.awt.event.KeyEvent;
+
 import javax.swing.JFrame;
 import Games.*;
 
@@ -20,7 +22,7 @@ public class Main {
 	private static GameScreen transitionScreen = new TransitionMenu(image, handler, 5, 15);
 	private static GameScreen screen = new StartMenu(image, handler, 30);
 
-	private static GameScreen screens[] = {new TicTacToe(image, handler)};
+	private static GameScreen screens[] = {new LightBike(image, handler)};
 
 
 	/**
@@ -47,6 +49,8 @@ public class Main {
 		w.drawImage(image);
 		image.resetImage();
 
+		if(handler.getKeys().size() > 0 && handler.getKeys().get(0) == KeyEvent.VK_ESCAPE) System.exit(0);
+		
 		int state = screen.isDone();
 		if (state != GameScreen.PLAYING) {
 			if (state == GameScreen.PONE) scoreA++;
