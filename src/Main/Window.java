@@ -4,7 +4,9 @@ import java.awt.*;
 import javax.swing.JPanel;
 
 public class Window extends JPanel {
-	private static final long serialVersionUID = 1L;
+	/**
+	 * the image object to be drawn to the display
+	 */
 	private Image image;
 	
 	/**
@@ -17,15 +19,15 @@ public class Window extends JPanel {
 	
 
 	/**
-	 * paint whats in there
+	 * paints the image to the display
 	 */
 	public void paint(Graphics g) {
 		g.drawImage(image.getImage(), 0, 0, image.getImage().getWidth(), image.getImage().getHeight(), null);
 	}
 	
 	/**
-	 * 
-	 * @param paint image given
+	 * sets the image instance variable to the given image and paints it to the screen
+	 * @param image to draw
 	 */
 	public void drawImage(Image image) {
 		this.image = image;

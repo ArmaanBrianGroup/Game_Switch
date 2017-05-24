@@ -6,9 +6,19 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public class Image {
-	
+	/**
+	 * the image that is writen to for rendering
+	 */
 	private BufferedImage image;
+	
+	/**
+	 * graphics that writes to the image
+	*/
 	private Graphics2D g;
+	
+	/**
+	 * stores the dimensions of the image
+	 */
 	private int winx, winy;
 	
 	/**
@@ -56,8 +66,8 @@ public class Image {
 	}
 	
 	/**
-	 * 
-	 * @param pixels reset image to given pixel values
+	 * sets the image two an image of the given pixel values (not used in the project currently)
+	 * @param pixel values
 	 */
 	public void resetImage(int[][][] pixels) {
 		image = new BufferedImage(winx, winy, BufferedImage.TYPE_3BYTE_BGR);
@@ -71,7 +81,7 @@ public class Image {
 	}
 	
 	/**
-	 * 
+	 * returns the image that was rendered to (for displaying the frame)
 	 * @return buffered image 
 	 */
 	public BufferedImage getImage() {
@@ -79,7 +89,7 @@ public class Image {
 	}
 	
 	/**
-	 * draw circle that is filled in
+	 * draw circle that IS filled in
 	 * @param c color value
 	 * @param x cord
 	 * @param y cord
@@ -91,7 +101,7 @@ public class Image {
 	}
 	
 	/**
-	 * draw circle that is not filled in
+	 * draw circle that IS NOT filled in
 	 * @param c color
 	 * @param x cord
 	 * @param y cord
@@ -103,7 +113,7 @@ public class Image {
 	}
 
 	/**
-	 * 
+	 * draws a rectangle 
 	 * @param c color
 	 * @param x value
 	 * @param y value
@@ -127,7 +137,7 @@ public class Image {
 	}
 	
 	/**
-	 * 
+	 * draws a line between the two given points
 	 * @param c color
 	 * @param x1
 	 * @param x2
@@ -140,7 +150,7 @@ public class Image {
 	}
 	
 	/**
-	 * 
+	 * draws the string provided
 	 * @param c color
 	 * @param str string
 	 * @param x
@@ -152,7 +162,7 @@ public class Image {
 	}
 	
 	/**
-	 * 
+	 * draws a string provided, and font can be specified
 	 * @param c color
 	 * @param f font
 	 * @param str string
@@ -166,7 +176,7 @@ public class Image {
 	}
 	
 	/**
-	 * 
+	 * draws a triangle given three points
 	 * @param c color
 	 * @param x1
 	 * @param y1

@@ -15,9 +15,19 @@ import javax.swing.event.MouseInputListener;
 
 
 public class Input_Handler implements ActionListener, MouseListener, KeyListener, MouseInputListener {
-	
+	/**
+	 * an arraylist of the keys that have been pressed down 
+	 */
 	private ArrayList<Integer> keys = new ArrayList<Integer>();
+	
+	/**
+	 * the x and y cordinates for the last mouse click
+	 */
 	private int mouseX = 0, mouseY = 0;
+	
+	/**
+	 * stores wether or not the last mouse click has been handled
+	 */
 	private boolean mouseClicked = false;
 
 	/**

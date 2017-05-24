@@ -1,8 +1,10 @@
 package Main;
 
 public class Timer {
+	/**
+	 * stores the FPS that the game should be run at
+	 */
 	private int FPS;
-	private long lastRefresh;
 	
 	/**
 	 * 
@@ -13,9 +15,10 @@ public class Timer {
 	}
 	
 	/**
-	 * run timer in infinite loop
+	 * run timer in infinite loop, updating the game at the fps desired
 	 */
 	public void run() {
+		long lastRefresh = 0;
 		while (true) {
 			if (lastRefresh + 1000/FPS <= System.currentTimeMillis()) {
 				lastRefresh = System.currentTimeMillis();
